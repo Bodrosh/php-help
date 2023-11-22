@@ -11,7 +11,7 @@ class Comment extends Model
     // Get the parent commentable model (post or video)
     public function commentable(): MorhpTo
     {
-        $this->morphTo();
+        return $this->morphTo();
     }
 }
 
@@ -23,7 +23,7 @@ class Post extends Model
     }
 
     // One Of Many (Polymorphic)
-    public function latestComment()
+    public function latestComment(): MorphOne
     {
         return $this->morphOne(Comment::class, 'commentable')->latestOfMany(); // oldestOfMany
         //return $this->morphOne(Comment::class, 'commentable')->ofMany('likes', 'max');
